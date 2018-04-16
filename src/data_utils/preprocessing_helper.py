@@ -43,22 +43,32 @@ def __get_contractions(abbreviations: dict):
 
 def load_word_to_index_dict():
     if os.path.isfile(WORD_INDEX_FILE_DIR):
+        print('found word to index dictionary. Loading dictionary...')
         with open(WORD_INDEX_FILE_DIR, 'r') as f:
             return pickle.load(f)
+    else:
+        print('word to index dictionary not found. Obtain an empty dictionary instead.')
+        return {'<unk>': 0, '<start>': 1, '<end>': 2}
 
 
 def load_index_to_word_dict():
     if os.path.isfile(INDEX_WORD_FILE_DIR):
+        print('found index to word dictionary. Loading dictionary...')
         with open(INDEX_WORD_FILE_DIR, 'r') as f:
             return pickle.load(f)
+    else:
+        print('index to word dictionary not found. Obtain an empty dictionary instead.')
+        return {0: '<unk>', 1: '<start>', 2:'<end>'}
 
 
 def save_word_to_index_dict(word_to_index: dict):
+    print('saving word to index dictionary...')
     with open(WORD_INDEX_FILE_DIR, 'w') as f:
         pickle.dump(word_to_index, f)
 
 
 def save_index_to_word_dict(index_to_word: dict):
+    print('saving index to word dictionary...')
     with open(INDEX_WORD_FILE_DIR, 'w') as f:
         pickle.dump(index_to_word, f)
 

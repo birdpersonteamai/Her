@@ -21,3 +21,5 @@ class PreprocessingHelperTest(unittest.TestCase):
 
         self.assertTrue(contractions.get("hello") is None)
         self.assertTrue(contractions.get("") is None)
+
+    #TODO create test for dictionary word index

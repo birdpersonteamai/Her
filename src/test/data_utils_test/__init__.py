@@ -2,4 +2,5 @@ from .dataset_helper_test import DatasetTest
 from .datasets_test.twitter_dataset import TwitterDatasetTest
 from .data_config_test import DataConfigTest
 from .tokenizer_wrapper_test import TokenizerWrapperTest
+from .word_index_vectorizer_test import WordIndexVectorizerTest
 from .preprocessing_helper_test import PreprocessingHelperTest
