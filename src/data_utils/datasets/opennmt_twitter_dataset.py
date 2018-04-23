@@ -1,7 +1,6 @@
 import os
 
 from data_utils.dataset_helper import Dataset
-from data_utils.tokenizer_wrapper import TokenizerWrapper
 
 class OpenNMTTwitterDataset(Dataset):
 
@@ -11,9 +10,9 @@ class OpenNMTTwitterDataset(Dataset):
         self.target = None
 
         dir = os.path.dirname(os.path.realpath(__file__))
-        data_path = os.path.join(dir, '../', '../', '../', 'data')
+        data_path = os.path.join(dir, '../', '../', '../', 'data', twitter_filename)
         self.data_file = os.path.join(data_path, 'cleaned_' + self.filename)
-        self.opennmt_twitter_data_path = os.path.join(data_path, 'opennmt_' + self.filename)
+        self.opennmt_twitter_data_path = os.path.join(data_path, 'opennmt_{}'.format(twitter_filename))
 
         if not os.path.isdir(self.opennmt_twitter_data_path):
             os.mkdir(self.opennmt_twitter_data_path)
@@ -44,16 +43,17 @@ class OpenNMTTwitterDataset(Dataset):
         # save the source
         with open(self.save_source, 'w') as f:
             for data in self.source:
-                f.write(data)
+                f.write(data + '\n')
 
         #save the target
         with open(self.save_target, 'w') as f:
             for data in self.target:
-                f.write(data)
+                f.write(data + '\n')
 
     def preprocess_data(self):
         source_vocab_file = os.path.join(self.opennmt_twitter_data_path, 'opennmt_twitter_source_vocab.txt')
         target_vocab_file = os.path.join(self.opennmt_twitter_data_path, 'opennmt_twitter_target_vocab.txt')
 
-        os.system('onmt-build-vocab --tokenizer SpaceTokenizer --save_vocab {} {}'.format(source_vocab_file, self.save_source))
-        os.system('onmt-build-vocab --tokenizer SpaceTokenizer --save_vocab {} {}'.format(target_vocab_file, self.save_target))
+        os.system('onmt-build-vocab --save_vocab {} {}'.format(source_vocab_file, self.save_source))
+        os.system('onmt-build-vocab --save_vocab {} {}'.format(target_vocab_file, self.save_target))
+        import opennmt.bin.build_vocab

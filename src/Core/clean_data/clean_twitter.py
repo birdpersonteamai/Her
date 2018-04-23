@@ -7,7 +7,10 @@ def main():
     tokenize = lambda string: string.split()
     detokenize = lambda string: ' '.join(string)
     tokenizer_wrapper = TokenizerWrapper(tokenize, detokenize)
+    # clean twitter dataset
     twitter_dataset = TwitterDataset(tokenizer_wrapper)
+
+    # create dataset for opennmt
     opennmt_twitter_dataset = OpenNMTTwitterDataset(tokenizer_wrapper, 'twitter')
 
 

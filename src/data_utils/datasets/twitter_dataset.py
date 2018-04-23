@@ -16,7 +16,7 @@ class TwitterDataset(Dataset):
         super(TwitterDataset, self).__init__(twitter_filename, tokenizer)
 
         dir = os.path.dirname(os.path.realpath(__file__))
-        self.data_path = os.path.join(dir, '../', '../', '../', 'data')
+        self.data_path = os.path.join(dir, '../', '../', '../', 'data', twitter_filename)
         self.data_file = os.path.join(self.data_path, self.filename)
 
         self.inputs = []
@@ -45,10 +45,10 @@ class TwitterDataset(Dataset):
 
     def save_preprocessed_data(self):
         preprocessed_file = os.path.join(self.data_path, 'cleaned_{}'.format(self.filename))
-        count = 0
         with open(preprocessed_file, 'w') as f:
             for data in self._preprocessed_data:
 
+                # check if it is at the end
                 if len(data) == 0:
                     break
 
