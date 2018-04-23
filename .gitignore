@@ -1,5 +1,6 @@
 .DS_Store
 .idea/
 Data/*.txt
+Data/twitter/
 __pycahce__/
 *.py[cod]
