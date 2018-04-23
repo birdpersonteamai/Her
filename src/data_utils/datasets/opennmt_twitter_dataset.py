@@ -1,4 +1,5 @@
 import os
+
 from data_utils.dataset_helper import Dataset
 from data_utils.tokenizer_wrapper import TokenizerWrapper
 
@@ -9,15 +10,24 @@ class OpenNMTTwitterDataset(Dataset):
         self.source = None
         self.target = None
 
-        self.retrieve_data()
-
-    def retrieve_data(self):
         dir = os.path.dirname(os.path.realpath(__file__))
         data_path = os.path.join(dir, '../', '../', '../', 'data')
-        data_file = os.path.join(data_path, self.filename)
+        self.data_file = os.path.join(data_path, 'cleaned_' + self.filename)
+        self.opennmt_twitter_data_path = os.path.join(data_path, 'opennmt_' + self.filename)
+
+        if not os.path.isdir(self.opennmt_twitter_data_path):
+            os.mkdir(self.opennmt_twitter_data_path)
+
+        self.save_source = os.path.join(self.opennmt_twitter_data_path, 'opennmt_twitter_source.txt')
+        self.save_target = os.path.join(self.opennmt_twitter_data_path, 'opennmt_twitter_target.txt')
+
+        self.retrieve_data()
+        self.preprocess_data()
+
+    def retrieve_data(self):
 
         # read raw twitter file and separate them into source and target
-        with open(data_file, 'r') as f:
+        with open(self.data_file, 'r') as f:
             self._raw_data = f.read()
             self._raw_data = self._raw_data.split('\n')
 
@@ -29,23 +39,21 @@ class OpenNMTTwitterDataset(Dataset):
             self.source = self.source[:trim_length]
             self.target = self.target[:trim_length]
 
-        save_source = os.path.join(data_path, 'opennmt_twitter_source.txt')
-        save_target = os.path.join(data_path, 'opennmt_twitter_target.txt')
+
 
         # save the source
-        with open(save_source, 'w') as f:
+        with open(self.save_source, 'w') as f:
             for data in self.source:
                 f.write(data)
 
         #save the target
-        with open(save_target, 'w') as f:
+        with open(self.save_target, 'w') as f:
             for data in self.target:
                 f.write(data)
 
     def preprocess_data(self):
-        pass
+        source_vocab_file = os.path.join(self.opennmt_twitter_data_path, 'opennmt_twitter_source_vocab.txt')
+        target_vocab_file = os.path.join(self.opennmt_twitter_data_path, 'opennmt_twitter_target_vocab.txt')
 
-
-
-tokenizer_wrapper = TokenizerWrapper(None, None)
-open = OpenNMTTwitterDataset(tokenizer_wrapper, 'twitter')
+        os.system('onmt-build-vocab --tokenizer SpaceTokenizer --save_vocab {} {}'.format(source_vocab_file, self.save_source))
+        os.system('onmt-build-vocab --tokenizer SpaceTokenizer --save_vocab {} {}'.format(target_vocab_file, self.save_target))
