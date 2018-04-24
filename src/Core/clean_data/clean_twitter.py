@@ -14,7 +14,5 @@ def main():
     opennmt_twitter_dataset = OpenNMTTwitterDataset(tokenizer_wrapper, 'twitter')
 
 
-import opennmt
-
 if __name__ == '__main__':
     main()
