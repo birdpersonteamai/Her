@@ -2,5 +2,6 @@
 .idea/
 Data/*.txt
 Data/twitter/
+src/Core/trained_models
 __pycahce__/
 *.py[cod]
