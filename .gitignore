@@ -5,3 +5,7 @@ Data/twitter/
 src/Core/trained_models
 __pycahce__/
 *.py[cod]
+.floydexpt
+.floydignore
+Data/.floyddata
+setup.sh

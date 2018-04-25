@@ -3,11 +3,11 @@
 model_dir: trained_models
 
 data:
-  train_features_file: /Users/darylfung/programming/Her/Data/twitter/opennmt_twitter/opennmt_twitter_source.txt
-  train_labels_file: /Users/darylfung/programming/Her/Data/twitter/opennmt_twitter/opennmt_twitter_target.txt
+  train_features_file: ../../Data/twitter/opennmt_twitter/opennmt_twitter_source.txt
+  train_labels_file: ../../Data/twitter/opennmt_twitter/opennmt_twitter_target.txt
 
-  source_words_vocabulary: /Users/darylfung/programming/Her/Data/twitter/opennmt_twitter/opennmt_twitter_source_vocab.txt
-  target_words_vocabulary: /Users/darylfung/programming/Her/Data/twitter/opennmt_twitter/opennmt_twitter_target_vocab.txt
+  source_words_vocabulary: ../../Data/twitter/opennmt_twitter/opennmt_twitter_source_vocab.txt
+  target_words_vocabulary: ../../Data/twitter/opennmt_twitter/opennmt_twitter_target_vocab.txt
 
 params:
   optimizer: LazyAdamOptimizer
@@ -39,7 +39,7 @@ train:
   train_steps: 1000000
 
   # Consider setting this to -1 to match the number of training examples.
-  sample_buffer_size: 5000000
+  sample_buffer_size: 100000
 
 eval:
   batch_size: 64
