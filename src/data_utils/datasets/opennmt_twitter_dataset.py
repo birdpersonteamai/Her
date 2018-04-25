@@ -3,6 +3,11 @@ import os
 from data_utils.dataset_helper import Dataset
 
 class OpenNMTTwitterDataset(Dataset):
+    """
+    1. retrieve dataset
+    2. save source and target to prepare for training the model
+    3. build and save the vocabulary
+    """
 
     def __init__(self, tokenizer, twitter_filename='twitter'):
         super(OpenNMTTwitterDataset, self).__init__(twitter_filename, tokenizer)
@@ -56,4 +61,3 @@ class OpenNMTTwitterDataset(Dataset):
 
         os.system('onmt-build-vocab --save_vocab {} {}'.format(source_vocab_file, self.save_source))
         os.system('onmt-build-vocab --save_vocab {} {}'.format(target_vocab_file, self.save_target))
-        import opennmt.bin.build_vocab

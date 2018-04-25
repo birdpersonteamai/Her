@@ -6,7 +6,9 @@ from src.data_utils import TwitterDataset
 from src.data_utils.tokenizer_wrapper import TokenizerWrapper
 
 class TwitterDatasetTest(unittest.TestCase):
-    dataset = TwitterDataset(TokenizerWrapper(lambda string: string.split()), twitter_filename='twitter_test')
+    dataset = TwitterDataset(TokenizerWrapper(lambda string: string.split(),
+                                              lambda tokens: ' '.join(tokens)),
+                             twitter_filename='twitter_test')
 
 
     def test_retrieve_data(self):
