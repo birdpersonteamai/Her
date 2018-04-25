@@ -2,6 +2,13 @@
 
 model_dir: trained_models
 
+data:
+  train_features_file: /Users/darylfung/programming/Her/Data/twitter/opennmt_twitter/opennmt_twitter_source.txt
+  train_labels_file: /Users/darylfung/programming/Her/Data/twitter/opennmt_twitter/opennmt_twitter_target.txt
+
+  source_words_vocabulary: /Users/darylfung/programming/Her/Data/twitter/opennmt_twitter/opennmt_twitter_source_vocab.txt
+  target_words_vocabulary: /Users/darylfung/programming/Her/Data/twitter/opennmt_twitter/opennmt_twitter_target_vocab.txt
+
 params:
   optimizer: LazyAdamOptimizer
   learning_rate: 2.0  # The scale constant.
