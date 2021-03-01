@@ -1,5 +1,11 @@
 .DS_Store
 .idea/
 Data/*.txt
+Data/twitter/
+src/Core/trained_models
 __pycahce__/
 *.py[cod]
+.floydexpt
+.floydignore
+Data/.floyddata
+setup.sh

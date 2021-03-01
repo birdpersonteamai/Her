@@ -8,8 +8,12 @@ class TokenizerWrapper:
     def __init__(self, tokenizer, detokenizer=None):
         """
 
-        :param tokenizer: a function that can be called right away to tokenize text
-                            e.g: tokenizer('hey how are you')  -> ['hey', 'how', 'are', 'you']
+        :param tokenize: a function that can be called right away to tokenize text
+                            e.g: tokenize('hey how are you')  -> ['hey', 'how', 'are', 'you']
+        :param detokenize: a function that can be called right away to detokenize text
+                            e.g: detokenize(['hey', 'how', 'are', 'you'] -> 'hey how are you'
+
+        tokenize and detokenize should complement each other
         """
         self.tokenizer = tokenizer
         self.detokenizer = detokenizer

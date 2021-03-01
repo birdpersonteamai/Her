@@ -11,7 +11,7 @@ class TokenizerWrapperTest(unittest.TestCase):
 
     def test_initialization(self):
         tokenizer_wrapper = TokenizerWrapper(lambda string: string.split())
-        self.assertTrue(callable(tokenizer_wrapper.tokenizer))
+        self.assertTrue(callable(tokenizer_wrapper.tokenize))
 
     def test_split_tokenize(self):
         tokenizer_wrapper = TokenizerWrapper(lambda string: string.split())

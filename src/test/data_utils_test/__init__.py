@@ -1,5 +1,7 @@
+from .datasets_test.twitter_dataset_test import TwitterDatasetTest
+from .datasets_test.opennmt_twitter_dataset_test import OpenNMTTwitterDatasetTest
+
 from .dataset_helper_test import DatasetTest
-from .datasets_test.twitter_dataset import TwitterDatasetTest
 from .data_config_test import DataConfigTest
 from .tokenizer_wrapper_test import TokenizerWrapperTest
 from .preprocessing_helper_test import PreprocessingHelperTest
